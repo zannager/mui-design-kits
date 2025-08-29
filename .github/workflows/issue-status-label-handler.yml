@@ -2,8 +2,11 @@ name: Issue status label handler
 
 on:
   issue_comment:
+    # on 'issue_comment.created' we check if the comment comes from the author and remove the "status: waiting for author" label
+    # additionally we reopen the issue when it is closed and the author comments on it
     types: [created]
   issues:
+    # on 'issues.closed' events we simply remove the "status: waiting for author" or "status: waiting for maintainer" label
     types: [closed]
 
 permissions: {}
